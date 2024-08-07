@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAuth } from '@/context';
 import { signin } from '@/data';
 
 const Login = () => {
+  const location = useLocation();
+  console.log(location);
   const { isAuthenticated, setCheckSession, setIsAuthenticated } = useAuth();
   const [{ email, password }, setForm] = useState({
     email: '',
@@ -30,7 +32,7 @@ const Login = () => {
     }
   };
 
-  if (isAuthenticated) return <Navigate to='/' />;
+  if (isAuthenticated) return <Navigate to={location.state?.next || '/'} />;
 
   return (
     <form className='my-5 md:w-1/2 mx-auto flex flex-col gap-3' onSubmit={handleSubmit}>

@@ -1,3 +1,4 @@
+import ProtectedLayout from './ProtectedLayout';
 import RootLayout from './RootLayout';
 
-export { RootLayout };
+export { ProtectedLayout, RootLayout };
