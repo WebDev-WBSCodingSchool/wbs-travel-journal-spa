@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useAuth } from '@/context';
 import { signin } from '@/data';
 
 const Login = () => {
+  const { isAuthenticated, setCheckSession, setIsAuthenticated } = useAuth();
   const [{ email, password }, setForm] = useState({
     email: '',
     password: ''
@@ -18,6 +20,8 @@ const Login = () => {
       if (!email || !password) throw new Error('All fields are required');
       setLoading(true);
       const res = await signin({ email, password });
+      setIsAuthenticated(true);
+      setCheckSession(true);
       toast.success(res.success);
     } catch (error) {
       toast.error(error.message);
@@ -25,6 +29,8 @@ const Login = () => {
       setLoading(false);
     }
   };
+
+  if (isAuthenticated) return <Navigate to='/' />;
 
   return (
     <form className='my-5 md:w-1/2 mx-auto flex flex-col gap-3' onSubmit={handleSubmit}>
