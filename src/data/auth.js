@@ -33,6 +33,19 @@ export const signin = async formData => {
   return data;
 };
 
+export const signOut = async () => {
+  const res = await fetch(`${baseURL}/signout`, { method: 'DELETE', credentials: 'include' });
+  if (!res.ok) {
+    const errorData = await res.json();
+    if (!errorData.error) {
+      throw new Error('An error occurred while trying to sign out');
+    }
+    throw new Error(errorData.error);
+  }
+  const data = await res.json();
+  return data;
+};
+
 export const signup = async formData => {
   const res = await fetch(`${baseURL}/signup`, {
     method: 'POST',

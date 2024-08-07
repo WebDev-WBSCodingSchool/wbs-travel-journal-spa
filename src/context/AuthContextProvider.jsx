@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { me, signOut } from '@/data';
 import { AuthContext } from '.';
-import { me } from '@/data';
 
 const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,10 +23,22 @@ const AuthContextProvider = ({ children }) => {
     checkSession && getUser();
   }, [checkSession]);
 
+  const logOut = async () => {
+    try {
+      await signOut();
+      toast.success('You have been logged out');
+      setIsAuthenticated(false);
+      setUser(null);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
         isAuthenticated,
+        logOut,
         user,
         setIsAuthenticated,
         setCheckSession
