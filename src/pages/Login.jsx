@@ -6,7 +6,6 @@ import { signin } from '@/data';
 
 const Login = () => {
   const location = useLocation();
-  console.log(location);
   const { isAuthenticated, setCheckSession, setIsAuthenticated } = useAuth();
   const [{ email, password }, setForm] = useState({
     email: '',
