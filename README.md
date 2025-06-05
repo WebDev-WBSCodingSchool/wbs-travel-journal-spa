@@ -21,9 +21,8 @@ Starter code for authentication/authorization module at WBS Coding School
 ## Usage
 
 - The application has its entry point at `src/main.jsx`
-- `App.jsx` returns a `RouterProvider`:
-  - All the navigation is nested under a `RootLayout`. This is important becuase we'll implement some React Contexts
-  - The `errorElement` prop is used at the entry point and again below the `RootLayout` to gracefully catch errors and render a custom error page.
+- `App.jsx` returns a `BrowserRouter`:
+  - All the navigation is nested under a `RootLayout`. This is important because we'll implement some React Contexts
 - The code is organised as follows:
   - There's a path resolution alias `@/` => `.src/` to avoid relative paths in imports. This is setup in `vite.config.js` to inform Vite, and `jsconfig.json` to inform the TS compiler in the editor.
     - e.g:
