@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 const PostCard = ({ _id, content, image, title }) => {
   return (
