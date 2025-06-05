@@ -1,10 +1,4 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  Outlet,
-  RouterProvider
-} from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route, Outlet, RouterProvider } from 'react-router-dom';
 import { RootLayout } from '@/layouts';
 import { CreatePost, Error, Home, Login, NotFound, Post, Register } from '@/pages';
 
@@ -20,9 +14,25 @@ const router = createBrowserRouter(
         <Route path='*' element={<NotFound />} />
       </Route>
     </Route>
-  )
+  ),
+  {
+    future: {
+      v7_relativeSplatPath: true,
+      v7_fetcherPersist: true,
+      v7_normalizeFormMethod: true,
+      v7_partialHydration: true,
+      v7_skipActionErrorRevalidation: true
+    }
+  }
 );
 
-const App = () => <RouterProvider router={router} />;
+const App = () => (
+  <RouterProvider
+    router={router}
+    future={{
+      v7_startTransition: true
+    }}
+  />
+);
 
 export default App;
